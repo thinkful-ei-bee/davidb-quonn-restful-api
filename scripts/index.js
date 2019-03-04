@@ -12,9 +12,9 @@ const store = {
   addItem:item =>{
     this.items.push(item);
   },
-  findAndUpdate:(id, updateData)=>{
-    const foundItem = this.items.find(item => item.id === id);
-    Object.assign(foundItem, updateData);
+  findAndUpdate:(id, newData)=>{
+    const findingItem = this.items.find(item => item.id === id);
+    Object.assign(findingItem, newData);
   }
 };
 
