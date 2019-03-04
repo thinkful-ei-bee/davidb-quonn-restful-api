@@ -1,26 +1,26 @@
-/* global shoppingList, store */
-"use strict";
+'use strict';
+
+const store = {
+  items: [
+    { id: cuid(), name: 'apples', checked: false },
+    { id: cuid(), name: 'oranges', checked: false },
+    { id: cuid(), name: 'milk', checked: true },
+    { id: cuid(), name: 'bread', checked: false }
+  ],
+  hideCheckedItems: false,
+  searchTerm: '',
+  addItem:function(item){
+    this.items.push(item);
+  }
+};
 
 $(document).ready(function() {
   shoppingList.bindEventListeners();
+  api.getItems()
+    .then(res => res.json())
+    .then((items) => {
+      items.forEach((item) => store.addItem(item));
+      shoppingList.render();
+    });
   shoppingList.render();
 });
-
-store.items.push(Item.create("apples"));
-
-fetch("https://thinkful-list-api.herokuapp.com/ei-student/items")
-  .then(res => res.json())
-  .then(data => console.log(data));
-
-api.getItems().then(res => console.log(res));
-
-api
-  .createItem("pears")
-  .then(res => res.json())
-  .then(newItem => {
-    return api.getItems();
-  })
-  .then(res => res.json())
-  .then(items => {
-    console.log(items);
-  });
