@@ -4,11 +4,11 @@
 // eslint-disable-next-line no-unused-vars
 const Item = (function(){
 
-  const validateName = function(name) {
+  const validateName = name =>{
     if (!name) throw new TypeError('Name must not be blank');
   };
 
-  const create = function(name) {
+  const create = name => {
     return {
       id: cuid(),
       name,
