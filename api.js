@@ -1,14 +1,14 @@
 'use strict';
 /* global $ */
 
-const api = (function () {
+const api = ( () =>{
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/fgdl';
-
-  const getItems = function(){
+  
+  const getItems = () =>{
     return fetch(BASE_URL+'/items');
   };
 
-  const createItem = function(name){
+  const createItem = name =>{
     const newItem = JSON.stringify({
       name: name,
     });
@@ -28,4 +28,4 @@ const api = (function () {
     getItems: getItems,
     createItem: createItem,
   };
-}());
+})();
