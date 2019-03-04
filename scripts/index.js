@@ -1,18 +1,26 @@
 /* global shoppingList, store */
-'use strict';
+"use strict";
 
 $(document).ready(function() {
   shoppingList.bindEventListeners();
   shoppingList.render();
 });
 
-store.items.push(Item.create('apples'));
+store.items.push(Item.create("apples"));
 
-fetch('https://thinkful-list-api.herokuapp.com/ei-student/items')
+fetch("https://thinkful-list-api.herokuapp.com/ei-student/items")
   .then(res => res.json())
   .then(data => console.log(data));
 
-api.getItems()
-  .then(res => console.log(res));
+api.getItems().then(res => console.log(res));
 
-console.log(api.BASE_URL);
+api
+  .createItem("pears")
+  .then(res => res.json())
+  .then(newItem => {
+    return api.getItems();
+  })
+  .then(res => res.json())
+  .then(items => {
+    console.log(items);
+  });
