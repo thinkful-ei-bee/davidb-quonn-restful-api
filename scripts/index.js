@@ -9,8 +9,12 @@ const store = {
   ],
   hideCheckedItems: false,
   searchTerm: '',
-  addItem:function(item){
+  addItem:item =>{
     this.items.push(item);
+  },
+  findAndUpdate:(id, updateData)=>{
+    const foundItem = this.items.find(item => item.id === id);
+    Object.assign(foundItem, updateData);
   }
 };
 
