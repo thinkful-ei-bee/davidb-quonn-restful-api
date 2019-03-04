@@ -21,11 +21,23 @@ const api = ( () =>{
       body: newItem
     };
 
-    return fetch(BASE_URL+'/items', option);
+    const updateItem = (id,updateData) =>{
+      const option = {
+        method: 'PATCH', 
+        headers: new Headers ({
+          'Content-type': 'application/json'
+        }),
+        body: JSON.stringify(updateData)
+      };
+      return fetch(BASE_URL+`/items/${id}`, option);
+    };
   };
+
+  const deleteItem = () =>{};
 
   return {
     getItems: getItems,
     createItem: createItem,
+    updateItem: updateItem,
   };
 })();
